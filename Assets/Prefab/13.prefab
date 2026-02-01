@@ -4959,7 +4959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishName: Sponge
-  fishPower: 1
+  fishPower: 0.5
   MaxSize: 10
   MinSize: 1000
 --- !u!61 &8302617529654517364

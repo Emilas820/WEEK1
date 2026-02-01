@@ -136,30 +136,11 @@ MonoBehaviour:
   maxLineLength: 10
   minLineLength: 1
   maxRollingRate: 20
+  reelSensitivity: 1
   handleChild: {fileID: 2521292715158556017}
-  fish:
-  - {fileID: 2186902083661808892, guid: aa0a8c9a26d999544b1ea6e921bd1d64, type: 3}
-  - {fileID: 2186902083661808892, guid: 1fe901ae2d881c44a93ea00cdb483b8c, type: 3}
-  - {fileID: 2186902083661808892, guid: 4ef74950537be8743a4078795ebea464, type: 3}
-  - {fileID: 2186902083661808892, guid: 04709680cfe45d44182b1181baf2480d, type: 3}
-  - {fileID: 2186902083661808892, guid: 2dcc230fce05e8d48811384ffc2a73db, type: 3}
-  - {fileID: 2186902083661808892, guid: 3036da88646a2014c824ab6ef3be45c8, type: 3}
-  - {fileID: 2186902083661808892, guid: d4cbe6dc286641e4e96766ba8700b3e8, type: 3}
-  - {fileID: 2186902083661808892, guid: 230be8a93b90ed44d8957c38fbd05958, type: 3}
-  - {fileID: 2186902083661808892, guid: 1aca1da29ba9b5a4aa4acbdfc22c8899, type: 3}
-  - {fileID: 2186902083661808892, guid: 06a68efc6cee92f4faf75ef13a477c45, type: 3}
-  - {fileID: 2186902083661808892, guid: 85cc4372ebd02d9488b13888d4f8db96, type: 3}
-  - {fileID: 2186902083661808892, guid: 0dd1deaa4997f2a43bb4048f694997ac, type: 3}
-  - {fileID: 2186902083661808892, guid: 00efb49df0e3bf24c8571e1592b2e8ea, type: 3}
-  - {fileID: 2186902083661808892, guid: 650e2dfd7df00b248a49e993df85939f, type: 3}
-  - {fileID: 2186902083661808892, guid: 82bf551d0a13a5d46b8ee65d11577bfe, type: 3}
-  - {fileID: 2186902083661808892, guid: a6a04f1fa339d8845b2383118404cd3f, type: 3}
-  getRate: 0.75
-  getTime: 5
-  isGetFish: 0
-  backImage: {fileID: 7458395938318110000}
-  nameText: {fileID: 0}
-  sizeText: {fileID: 0}
+  fish: []
+  getRate: 0.5
+  getTime: 3
 --- !u!1 &8303653524677853432
 GameObject:
   m_ObjectHideFlags: 0

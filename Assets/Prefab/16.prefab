@@ -4959,7 +4959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishName: Ball
-  fishPower: 1
+  fishPower: 0
   MaxSize: 5
   MinSize: 5
 --- !u!61 &8302617529654517364

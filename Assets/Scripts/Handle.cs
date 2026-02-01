@@ -14,6 +14,7 @@ public class Handle : MonoBehaviour
     
     // UI 게이지
     private Image gageImage; // Gage UI Image (태그로 런타임에 할당됨)
+    private Image fishGageImage; // Gage UI Image (태그로 런타임에 할당됨)
     
     // 손잡이 (자식) - 회전이 적용될 오브젝트
     [SerializeField] private Transform handleChild; // 손잡이 (자식) 오브젝트
@@ -75,12 +76,19 @@ public class Handle : MonoBehaviour
 
         // 2. 태그로 찾던 무거운 코드 대신 싱글톤에 등록된 UI를 바로 씁니다.
         // (GameManager에 gageImage가 등록되어 있다고 가정)
-        gageImage = GameManager.instance.gage; 
+        gageImage = GameManager.instance.gage;
+        fishGageImage = GameManager.instance.fishgageBar;
         
         if (gageImage != null)
         {
             gageImage.fillAmount = stringRate;
         }
+        
+        if (fishGageImage != null)
+        {
+            fishGageImage.fillAmount = 0f;
+        }
+        
     }
 
     void Update()
@@ -223,7 +231,7 @@ public class Handle : MonoBehaviour
     // stringRate가 getRate 이상을 getTime 동안 유지하면 성공
     private void CheckSuccessCondition()
     {
-        // 2. 성공 임계점 체크 (물고기 저항에 의한 미세한 떨림을 고려해 0.01f의 여유를 둠)
+        // stringRate가 getRate 이상을 만족할 때만 타이머 증가
         if (stringRate >= getRate - 0.01f)
         {
             // 타이머 증가
@@ -237,10 +245,8 @@ public class Handle : MonoBehaviour
         }
         else
         {
-            // 3. 임계점 미만일 때 즉시 리셋하는 대신 서서히 감소 (시각적 매칭 개선)
-            // 유저가 다시 게이지를 올리면 이어서 쌓을 수 있어 훨씬 자연스럽게 느껴집니다.
-            successTimer -= Time.deltaTime * 1.5f; 
-            successTimer = Mathf.Max(successTimer, 0f);
+            // getRate 미만이면 즉시 0으로 초기화 (fishGageImage도 0)
+            successTimer = 0f;
         }
     }
     
@@ -262,10 +268,17 @@ public class Handle : MonoBehaviour
             GameManager.instance.stringRate = 0f;
             GameManager.instance.acquireResult = -1;
             
-            // Gage 이미지 꺼기
+            // Gage 이미지 끄기
             if (GameManager.instance.gage != null)
             {
                 GameManager.instance.gage.gameObject.SetActive(false);
+            }
+            
+            // Fish Gage 이미지 초기화
+            if (GameManager.instance.fishgage != null)
+            {
+                GameManager.instance.fishgage.fillAmount = 0f;
+                GameManager.instance.fishgage.gameObject.SetActive(false);
             }
             
             // StartText 비활성화
@@ -279,8 +292,9 @@ public class Handle : MonoBehaviour
     }
     
     /// <summary>
-    /// UI 게이지 Fill Amount를 StringRate와 연동시킵니다
-    /// StringRate 0 = 0%, StringRate 1 = 100%
+    /// UI 게이지 Fill Amount를 업데이트합니다
+    /// gageImage: StringRate (0 ~ 1)를 Fill Amount (0 ~ 1)로 직접 매핑
+    /// fishGageImage: successTimer가 getRate를 충족하는 시간동안 상승 (0 ~ 1)
     /// </summary>
     private void UpdateGageUI()
     {
@@ -288,6 +302,15 @@ public class Handle : MonoBehaviour
         {
             // StringRate (0 ~ 1)를 Fill Amount (0 ~ 1)로 직접 매핑
             gageImage.fillAmount = Mathf.Clamp01(stringRate);
+        }
+        if (fishGageImage != null)
+        {
+            fishGageImage.fillAmount = Mathf.Clamp01(stringRate);
+            float fillAmount = Mathf.Clamp01(successTimer / getTime);
+            Debug.Log($"stringRate: {stringRate}, getRate: {getRate}, successTimer: {successTimer}, getTime: {getTime}, fillAmount: {fillAmount}");
+        
+            // ← 여기! 실제로 할당해야 함
+            fishGageImage.fillAmount = fillAmount;
         }
     }
     

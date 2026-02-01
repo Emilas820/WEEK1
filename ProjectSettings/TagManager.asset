@@ -10,6 +10,7 @@ TagManager:
   - Result
   - ResultName
   - ResultSize
+  - FishGageImage
   layers:
   - Default
   - TransparentFX

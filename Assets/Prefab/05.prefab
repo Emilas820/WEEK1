@@ -4959,7 +4959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishName: Bluegill
-  fishPower: 1
+  fishPower: 2
   MaxSize: 10
   MinSize: 50
 --- !u!61 &8302617529654517364

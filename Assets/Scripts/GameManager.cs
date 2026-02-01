@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     [Header("이벤트")]
     public GameObject handle;
     public UnityEngine.UI.Image gage;
+    public UnityEngine.UI.Image fishgage;
+    public UnityEngine.UI.Image fishgageBar;
     public bool getFish;    // 물고기를 먹었냐?
 
     public bool eventStart = false;
@@ -104,6 +106,7 @@ public class GameManager : MonoBehaviour
         
         // gage 활성화
         gage.gameObject.SetActive(true);
+        fishgage.gameObject.SetActive(true);
         
         // startText 활성화
         if (startText != null)
@@ -137,6 +140,7 @@ public class GameManager : MonoBehaviour
             // handle 삭제
             Destroy(currentHandle);
             gage.gameObject.SetActive(false);
+            fishgage.gameObject.SetActive(false);
 
             // 추가: 결과 창 활성화
             if (resultUI != null)
